@@ -1,0 +1,736 @@
+/* Organizations page styling with buildings theme */
+.org-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 25px;
+    margin-top: 30px;
+}
+
+/* Organization card styled as a building */
+.org-card {
+    position: relative;
+    background: linear-gradient(to bottom, #f0f0f0 0%, #e0e0e0 100%);
+    border-radius: 8px;
+    box-shadow:
+            0 8px 20px rgba(0,0,0,0.1),
+            0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0;
+    /* Building-like border */
+    border-top: 10px solid #d4af37; /* Gold roof */
+    border-bottom: 15px solid #5a5a5a; /* Foundation */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Building hover effect */
+.org-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+            0 15px 30px rgba(0,0,0,0.15),
+            0 8px 15px rgba(0,0,0,0.1);
+}
+
+/* Add windows to the building */
+.org-card::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+            linear-gradient(90deg, transparent 0%, transparent 25%,
+            rgba(255,255,255,0.4) 25%, rgba(255,255,255,0.4) 30%,
+            transparent 30%, transparent 45%,
+            rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.4) 50%,
+            transparent 50%, transparent 70%,
+            rgba(255,255,255,0.4) 70%, rgba(255,255,255,0.4) 75%,
+            transparent 75%, transparent 100%),
+            linear-gradient(0deg, transparent 0%, transparent 20%,
+            rgba(255,255,255,0.4) 20%, rgba(255,255,255,0.4) 25%,
+            transparent 25%, transparent 45%,
+            rgba(255,255,255,0.4) 45%, rgba(255,255,255,0.4) 50%,
+            transparent 50%, transparent 70%,
+            rgba(255,255,255,0.4) 70%, rgba(255,255,255,0.4) 75%,
+            transparent 75%, transparent 100%);
+    background-size: 80px 60px;
+    opacity: 0.3;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Organization logo styled as sign on the building wall */
+.org-logo {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Sign on the wall effect */
+    border: 3px solid #d4af37;
+    box-shadow:
+            0 5px 10px rgba(0,0,0,0.2),
+            0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.org-logo::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 45%;
+    width: 10px;
+    height: 15px;
+    background: #888;
+    z-index: -1;
+}
+
+.org-logo img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+/* Building door effect for details section */
+.org-details {
+    background: linear-gradient(to bottom, #e8e8e8 0%, #d8d8d8 100%);
+    padding: 15px;
+    flex-grow: 1;
+    position: relative;
+    border-top: 2px solid #bbb;
+    z-index: 2;
+}
+
+.org-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    text-align: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 8px;
+}
+
+.org-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.org-info i {
+    margin-right: 10px;
+    color: #d4af37;
+    width: 16px;
+}
+
+.org-description {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    padding-top: 8px;
+}
+
+/* Status badges */
+.validation-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.badge-validated {
+    background-color: #28a745;
+    color: white;
+}
+
+.badge-pending {
+    background-color: #ffc107;
+    color: #333;
+}
+
+/* Action buttons at the bottom of the building */
+.org-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+.org-actions .action-btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+    transition: all 0.2s;
+}
+
+.validate-btn {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a2a3a 100%);
+    color: #d4af37;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.validate-btn:hover {
+    background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    color: white;
+}
+
+.delete-btn {
+    color: #d4af37;
+    background: rgba(255,255,255,0.9);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.empty-state i {
+    font-size: 3em;
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Organization Details Modal Styling */
+#org-details-modal .modal-content {
+    background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+    max-width: 800px;
+    padding: 0;
+    border-radius: 10px;
+    border-top: 10px solid #d4af37;
+    overflow: hidden;
+}
+
+.org-detail-header {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.org-detail-logo {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 3px solid #d4af37;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.org-detail-logo img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.org-detail-title {
+    flex-grow: 1;
+}
+
+.org-detail-title h2 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.org-detail-section {
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.org-detail-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-size: 1.2em;
+    border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.org-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 15px;
+}
+
+.org-detail-item {
+    margin-bottom: 15px;
+}
+
+.org-detail-label {
+    font-size: 0.85em;
+    color: darkblue;
+    margin-bottom: 5px;
+}
+
+.org-detail-value {
+    background: rgba(255,255,255,0.7);
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 3px solid #d4af37;
+}
+
+.org-description {
+    line-height: 1.6;
+    color: #555;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.action-buttons .action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #777;
+    font-size: 1.5em;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    color: #d4af37;
+    background: white;
+    transform: rotate(90deg);
+}
+
+/* Add these styles to the bottom of your existing file */
+
+/* Organization Confirmation Modal Styling */
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+}
+
+.confirmation-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    border-top: 10px solid #d4af37;
+}
+
+.confirmation-header {
+    background: #f8f8f8;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.confirmation-header i {
+    font-size: 3em;
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.confirmation-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.75em;
+}
+
+.confirmation-content {
+    padding: 25px;
+}
+
+.confirmation-message {
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.warning-text {
+    color: #dc3545;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.org-summary {
+    display: flex;
+    align-items: center;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    border-left: 3px solid #d4af37;
+}
+
+.org-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    border: 3px solid #d4af37;
+    overflow: hidden;
+}
+
+.org-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.org-avatar i {
+    font-size: 2.5em;
+    color: #555;
+}
+
+.org-info {
+    flex-grow: 1;
+}
+
+.org-info h3 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+}
+
+.org-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.org-info i {
+    width: 20px;
+    color: #d4af37;
+    margin-right: 5px;
+}
+
+.confirmation-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 25px;
+    background: #f8f8f8;
+    border-top: 1px solid #eee;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.cancel-btn {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.cancel-btn:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+/* Filter panel styling */
+.filter-panel {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.filter-header {
+    background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.filter-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.filter-header h3 i {
+    margin-right: 10px;
+    color: #d4af37;
+}
+
+.toggle-filters-btn {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.toggle-filters-btn:hover {
+    color: #d4af37;
+}
+
+.filter-body {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 15px;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border 0.3s;
+}
+
+.filter-input:focus {
+    border-color: #d4af37;
+    outline: none;
+}
+
+.filter-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.apply-btn {
+    background: #d4af37;
+    color: white;
+}
+
+.apply-btn:hover {
+    background: #c9a227;
+    transform: translateY(-2px);
+}
+
+.reset-btn {
+    background: #f0f0f0;
+    color: #555;
+}
+
+.reset-btn:hover {
+    background: #e0e0e0;
+}
+
+/* Content layout with filter */
+.content-with-filter {
+    width: 100%;
+}
+
+/* Pagination styling */
+.pagination-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.page-btn:hover:not(.active-page) {
+    background: #f0f0f0;
+}
+
+.page-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.first-page-btn, .prev-page-btn {
+    border-right: none;
+}
+
+.first-page-btn {
+    border-radius: 4px 0 0 4px;
+}
+
+.next-page-btn, .last-page-btn {
+    border-left: none;
+}
+
+.last-page-btn {
+    border-radius: 0 4px 4px 0;
+}
+
+.page-numbers {
+    display: flex;
+}
+
+.page-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-right: none;
+}
+
+.page-number:hover:not(.active-page) {
+    background: #f0f0f0;
+}
+
+.page-number.active-page {
+    background: #d4af37;
+    color: white;
+    border-color: #d4af37;
+}
+
+.pagination-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.page-size-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-size-selector select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pagination-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .filter-body {
+        grid-template-columns: 1fr;
+    }
+}
+
